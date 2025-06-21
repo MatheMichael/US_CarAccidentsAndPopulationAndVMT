@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="cover.jpg" alt="Urban traffic image" width="700">
+  <img src="carl-hunley-jr-ytiIHYBHl1o-unsplash.jpg" alt="Urban traffic image" width="400">
 </p>
 
 <p align="center">
