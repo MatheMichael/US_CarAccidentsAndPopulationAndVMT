@@ -1,3 +1,11 @@
+<p align="center">
+  <img src="cover.jpg" alt="Urban traffic image" width="700">
+</p>
+
+<p align="center">
+  <sub>Photo by <a href="https://unsplash.com/@workbycarl?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Carl Hunley Jr</a> on <a href="https://unsplash.com/photos/a-city-street-with-tall-buildings-ytiIHYBHl1o?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a></sub>
+</p>
+
 # 🚗 US Car Accidents: A State-Level Regression Analysis
 
 This project investigates how **state-level traffic accident counts** in the U.S. can be explained by interpretable, real-world predictors: **population size** and **vehicle miles traveled (VMT)** patterns. While the underlying dataset is widely used on Kaggle, this regression-based analysis — combining public demographic and infrastructure data — fills a gap in prior work.
