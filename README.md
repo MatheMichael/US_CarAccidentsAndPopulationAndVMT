@@ -37,7 +37,7 @@ This project begins with a deliberately simple and interpretable question:
 > **Can population size alone explain variability in traffic accident counts across U.S. states?**
 
 The answer, surprisingly, is **yes — to a significant degree**.  
-A simple linear regression log-log regression using only state-level population data yields an adjusted R² of over **0.80**, yielding the model: $$A(P)\approx e^{-10.87}\cdot P^{1.41}\cdot e^\epsilon,$$
+A simple linear log-log regression using only state-level population data yields an adjusted R² of over **0.80**. The resulting model is: $$A(P)\approx e^{-10.87}\cdot P^{1.41}\cdot e^\epsilon,$$
 where $\epsilon\sim\text{N}(-0.063,0.689).$
 <p align="center">
   <img src="A(P) model.jpg" alt="Accident count using population model" width="750">
@@ -79,22 +79,29 @@ This project emphasizes **interpretable regression**, data quality, and insight-
 | 3️⃣ | `log(Population)`, `VMT_rural / VMT_urban` | **0.85** | Final model with feature engineering |
 
 ---
-The final model is: $$A(P,V)=e^{-6.64} P^{1.17} e^{-0.62V} e^{\epsilon},$$
-where $\epsilon \sim \text{N}(-0.06,0,69)$, where $A$ is the number of accidents, $P$ is the population size and $V$ is VMT rural per urban.
+The final model is:
 
-## 🔬 Techniques & Insights
+$$
+A(P, V) = e^{-6.64} \cdot P^{1.17} \cdot e^{-0.62V} \cdot e^{\epsilon},
+$$
 
-### 🧹 Data Cleaning
+where $\epsilon \sim \text{N}(-0.06,\ 0.69^2)$, $A$ is the number of accidents, $P$ is the population size, and $V$ is the rural-to-urban VMT ratio.
+
+It would be interesting to conduct a similar analysis in other regions; I conjecture that a comparable model—with different exponents—would also provide a good fit.
+
+##  Techniques & Insights
+
+###  Data Cleaning
 - Removed **duplicate records** from the accidents dataset
 - Standardized formats across public datasets
 - Handled outliers based on residual analysis and statistical tests
 
-### 📐 Feature Engineering
+###  Feature Engineering
 - Created a custom metric: **`RurPerUrb = VMT_rural / VMT_urban`**
 - Captures geographic driving character — states with more rural traffic may differ in accident profiles
 - This new feature was **statistically significant** and improved model performance
 
-### 📊 Statistical Modeling
+###  Statistical Modeling
 - Used **OLS regression** via `statsmodels`
 - Validated assumptions:
   - Checked residual distributions
@@ -104,13 +111,13 @@ where $\epsilon \sim \text{N}(-0.06,0,69)$, where $A$ is the number of accidents
   - Adjusted R² = 0.837
   - All predictors significant at `p < 0.001`
 
-### 🔗 Data Integration
+###  Data Integration
 - Merged three public datasets on state-level identifiers
 - Cleaned and reshaped U.S. Census and FHWA data for compatibility
 
 ---
 
-## 📌 Key Findings
+##  Key Findings
 
 - **Population alone explains ~81%** of the variance in state-level accident counts
 - Adding **rural-to-urban VMT ratio** increases adjusted R² to **~84%**
@@ -118,11 +125,11 @@ where $\epsilon \sim \text{N}(-0.06,0,69)$, where $A$ is the number of accidents
 
 ---
 
-## 📂 Files in This Repo
+##  Files in This Repo
 
 - `CarAccPopAndVMT.ipynb` — Complete analysis: cleaning, feature design, modeling, and interpretation
 - `README.md` — Project summary and documentation
-- figures
+- Visual figures (`.jpg`, `.png`) stored in the root directory
 
 
 
