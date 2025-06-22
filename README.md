@@ -6,21 +6,21 @@
   <sub>Photo by <a href="https://unsplash.com/@workbycarl?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Carl Hunley Jr</a> on <a href="https://unsplash.com/photos/a-city-street-with-tall-buildings-ytiIHYBHl1o?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a></sub>
 </p>
 
-# 🚗 US Car Accidents: A State-Level Regression Analysis
+# US Car Accidents: A State-Level Regression Analysis
 
 This project investigates how **state-level traffic accident counts** in the U.S. can be explained by interpretable, real-world predictors: **population size** and **vehicle miles traveled (VMT)** patterns. While the underlying dataset is widely used on Kaggle, this regression-based analysis — combining public demographic and infrastructure data — fills a gap in prior work.
 
 ---
 
-## 📊 Dataset Overview
+## Dataset Overview
 
 **Primary dataset:** [US Accidents (Kaggle)](https://www.kaggle.com/datasets/sobhanmoosavi/us-accidents)  
 - ~7.7 million accident records (2016–2023), covering 49 states  
 - Sourced from traffic APIs, DOTs, law enforcement, sensors, and cameras
 
 **Additional datasets:**
-- 🧑‍🤝‍🧑 [2020 U.S. Census Population Estimates](https://www.census.gov/data/tables/time-series/demo/popest/2020s-national-total.html)
-- 🛣️ [2022 FHWA Vehicle Miles Traveled (VMT)](https://www.fhwa.dot.gov/policyinformation/statistics/2022/vm2.cfm)
+-  [2020 U.S. Census Population Estimates](https://www.census.gov/data/tables/time-series/demo/popest/2020s-national-total.html)
+-  [2022 FHWA Vehicle Miles Traveled (VMT)](https://www.fhwa.dot.gov/policyinformation/statistics/2022/vm2.cfm)
 
 **Acknowledgements:**  
 > Moosavi, S., et al., “A Countrywide Traffic Accident Dataset.” 2019  
@@ -37,7 +37,9 @@ This project begins with a deliberately simple and interpretable question:
 > **Can population size alone explain variability in traffic accident counts across U.S. states?**
 
 The answer, surprisingly, is **yes — to a significant degree**.  
-A simple linear regression using only state-level population data yields an adjusted R² of over **0.80**, indicating that population alone explains more than 80% of the variance in total accident counts.
+A simple linear regression log-log regression using only state-level population data yields an adjusted R² of over **0.80**, yielding the model: $$A(P)\approx e^{-10.87}\cdot P^{1.41}\cdot e^\epsilon,$$
+where $\epsilon\sim\text{N}(-0.063,0.689).$
+
 
 This baseline result is:
 - **Interpretable:** Population is a universally understood, policy-relevant variable.
