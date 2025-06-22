@@ -28,7 +28,7 @@ This project investigates how **state-level traffic accident counts** in the U.S
 
 ---
 
-## 📘 Motivation and Baseline Insight
+## Motivation and Baseline Insight
 
 Many traffic safety models rely on detailed exposure data such as vehicle miles traveled (VMT), road infrastructure metrics, or socioeconomic indicators. While such variables provide fine-grained insight, they are often harder to collect, interpret, or apply quickly in early-stage analysis.
 
@@ -39,14 +39,18 @@ This project begins with a deliberately simple and interpretable question:
 The answer, surprisingly, is **yes — to a significant degree**.  
 A simple linear regression log-log regression using only state-level population data yields an adjusted R² of over **0.80**, yielding the model: $$A(P)\approx e^{-10.87}\cdot P^{1.41}\cdot e^\epsilon,$$
 where $\epsilon\sim\text{N}(-0.063,0.689).$
+<p align="center">
+  <img src="A(P) model.jpg" alt="Accident count using population model" width="750">
+</p>
 
+<p align="center">
 
 This baseline result is:
 - **Interpretable:** Population is a universally understood, policy-relevant variable.
 - **Actionable:** It enables rough risk estimation even without complex exposure metrics.
 - **Foundational:** It sets a high-performing benchmark to test the value of additional predictors.
 
-### 🔄 Why Population Is a Reasonable Standalone Predictor
+### Why Population Is a Reasonable Standalone Predictor
 
 Many predictors commonly used in traffic modeling — such as number of vehicles, number of licensed drivers, economic activity, and total vehicle miles traveled — tend to scale closely with **population size**. Because of these high correlations, **population can serve as a proxy** for a wide range of state-level characteristics that influence accident frequency.
 
@@ -56,7 +60,7 @@ From this baseline, the analysis then builds toward a stronger model by incorpor
 
 ---
 
-## 🎯 Objective
+## Objective
 
 To explore whether **accident count variability across U.S. states** can be explained using:
 - Total state population
@@ -66,15 +70,17 @@ This project emphasizes **interpretable regression**, data quality, and insight-
 
 ---
 
-## 🧪 Model Evolution
+## Model Evolution
 
 | Step | Predictors | Adjusted R² | Notes |
 |------|------------|-------------|-------|
 | 1️⃣ | `Population` | 0.780 | Baseline OLS model |
 | 2️⃣ | `Population` (after outlier removal) | 0.811 | Improved residuals; Shapiro-Wilk normality confirmed |
-| 3️⃣ | `log(Population)`, `VMT_rural / VMT_urban` | **0.837** | Final model with feature engineering |
+| 3️⃣ | `log(Population)`, `VMT_rural / VMT_urban` | **0.85** | Final model with feature engineering |
 
 ---
+The final model is: $$A(P,V)=e^{-6.64} P^{1.17} e^{-0.62V} e^{\epsilon},$$
+where $\epsilon \sim \text{N}(-0.06,0,69)$, where $A$ is the number of accidents, $P$ is the population size and $V$ is VMT rural per urban.
 
 ## 🔬 Techniques & Insights
 
@@ -114,25 +120,13 @@ This project emphasizes **interpretable regression**, data quality, and insight-
 
 ## 📂 Files in This Repo
 
-- `notebook.ipynb` — Complete analysis: cleaning, feature design, modeling, and interpretation
+- `CarAccPopAndVMT.ipynb` — Complete analysis: cleaning, feature design, modeling, and interpretation
 - `README.md` — Project summary and documentation
-- `requirements.txt` *(optional)* — Python dependencies
+- figures
 
----
 
-## 🚀 How to Reproduce
 
-1. Clone the repository  
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-3. Download the datasets manually (links provided above), or follow notebook instructions  
-4. Run `notebook.ipynb` in Jupyter
-
----
-
-## 🧰 Tools Used
+## Tools Used
 
 - Python, Jupyter Notebook  
 - pandas, statsmodels, matplotlib, seaborn  
@@ -140,7 +134,7 @@ This project emphasizes **interpretable regression**, data quality, and insight-
 
 ---
 
-## 📮 Contact & Purpose
+##  Contact & Purpose
 
 This project was developed as part of my transition into data science and quantitative roles. It reflects:
 
