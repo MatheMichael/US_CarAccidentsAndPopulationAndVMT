@@ -38,7 +38,7 @@ This project begins with a deliberately simple and interpretable question:
 
 The answer, surprisingly, is **yes — to a significant degree**.  
 A simple linear log-log regression using only state-level population data yields an adjusted R² of over **0.80**. The resulting model is: $$A(P)\approx e^{-10.87}\cdot P^{1.41}\cdot e^\epsilon,$$
-where $\epsilon\sim\text{N}(-0.063,0.689).$
+where $\epsilon\sim\text{N}(-0.063,0.689^2).$
 <p align="center">
   <img src="A(P) model.jpg" alt="Accident count using population model" width="750">
 </p>
